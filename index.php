@@ -19,7 +19,6 @@
     .form-group, .checkbox{
         margin-right:1em;
         height:100px;
-
     }
     .checkbox label{
         font-weight: 600;
@@ -27,12 +26,20 @@
     label{padding-top: 6px;}
     .alert{
         margin-top:.5em;
+        padding:.5em;
+    }
+    .alert.bnrHtError{
+        display: inline;
+        margin-left: 1em;
     }
     button{
         margin-bottom:3em!important;
     }
     .cta-url{
         width:100%;
+    }
+    .input-group-lg button {
+        margin-bottom: 0!important;
     }
 </style>
 
@@ -42,7 +49,7 @@
 
         <div class="form-inline">
             <h1>Adaptive Banner</h1>
-            <div class="form-group">
+            <div>
                 <select id="banner-type" class="form-control" name="banner-type">
                     <option value="null"> - Select a Banner Type - </option>
                     <option value="single">Single</option>
@@ -50,7 +57,8 @@
                     <option value="triple">Triple</option>
                 </select>
             </div>
-            <span id="generic-form-fields" class="hidden">
+            <br>
+            <div id="generic-form-fields" class="hidden">
                 <div class="checkbox">
                     <label class="checkbox-inline"> Clickable? <input id="clickable" type="checkbox" name="clickable" value="true"/></label>
                 </div>
@@ -64,9 +72,7 @@
                     <label for="release-date">Release Date</label>
                     <input class="datepicker form-control" id="release-date" type="text" name="release-date" placeholder="FORMAT: YYYYMMDD" />
                 </div>
-
-
-            </span>
+            </div>
         </div>
     </div>
 
@@ -79,7 +85,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">Single Banner File Upload</div>
-                    <div id="img-dropzone-left-single" class="dropzone panel-body dropzone-single">
+                    <div banner-location="single" id="img-dropzone-left-single" class="dropzone panel-body dropzone-single">
                 </div>
             </div>
             <div class="row">
@@ -92,7 +98,7 @@
         <div class="dz hidden" id="drop-left-double">
             <div class="panel panel-default">
                 <div class="panel-heading">Left Banner File Upload</div>
-                    <div id="img-dropzone-left-double" class="dropzone panel-body dropzone-double">
+                    <div banner-location="left" id="img-dropzone-left-double" class="dropzone panel-body dropzone-double">
                 </div>
             </div>
             <div class="row">
@@ -106,7 +112,7 @@
         <div class="dz hidden" id="drop-left-triple">
             <div class="panel panel-default">
                 <div class="panel-heading">Left Banner File Upload</div>
-                    <div id="img-dropzone-left-triple" class="dropzone panel-body dropzone-triple">
+                    <div banner-location="left" id="img-dropzone-left-triple" class="dropzone panel-body dropzone-triple">
                 </div>
             </div>
             <div class="row">
@@ -119,7 +125,7 @@
         <div class="dz hidden" id="drop-middle-triple">
             <div class="panel panel-default">
                 <div class="panel-heading">Middle Banner File Upload</div>
-                    <div id="img-dropzone-middle-triple" class="dropzone panel-body dropzone-triple">
+                    <div banner-location="middle" id="img-dropzone-middle-triple" class="dropzone panel-body dropzone-triple">
                 </div>
             </div>
             <div class="row">
@@ -132,7 +138,7 @@
         <div class="dz hidden" id="drop-right-double">
             <div class="panel panel-default">
                 <div class="panel-heading">Right Banner File Upload</div>
-                    <div id="img-dropzone-right-double" class="dropzone panel-body dropzone-double">
+                    <div banner-location="right" id="img-dropzone-right-double" class="dropzone panel-body dropzone-double">
                 </div>
             </div>
             <div class="row">
@@ -145,7 +151,7 @@
         <div class="dz hidden" id="drop-right-triple">
             <div class="panel panel-default">
                 <div class="panel-heading">Right Banner File Upload</div>
-                    <div id="img-dropzone-right-triple" class="dropzone panel-body dropzone-triple">
+                    <div banner-location="right" id="img-dropzone-right-triple" class="dropzone panel-body dropzone-triple">
                 </div>
             </div>
             <div class="row">

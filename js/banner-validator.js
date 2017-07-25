@@ -4,6 +4,7 @@
 var Validate = {
     currentBannerType: '',
     form: function (bannerType, validBannerImgWidths, formFields, textFields, file, myDropZone) {
+        'use strict';
         var formSubmitBtn = $('#form-submit-' + bannerType),
             minNumberImgs,
             dropzones = $('.dropzone-'+ bannerType);
@@ -63,7 +64,8 @@ var Validate = {
     },
 
     field: function(field, formSubmitBtn, bannerType){
-        fieldValue = field.val();
+        var fieldValue = field.val(),
+            isThisValid;
 
         if(field.hasClass('datepicker')){
             isThisValid = Validate.date(fieldValue);
@@ -124,7 +126,7 @@ var Validate = {
         return !(!fieldValue);
     },
     currentDropZone: '',
-    dropZone: function(dropZone,minNumImgs, validImgWidths, file, dropZoneObject) {
+    dropZone: function(dropZone,minNumImgs, validImgWidths, files, dropZoneObject) {
         var imagePreviewContainer = dropZone.find('.dz-preview').not('.dz-error'),
             dzValidation = {valid: true, error: ''},
             validImgNum = 0,
@@ -132,13 +134,19 @@ var Validate = {
             imagePreviewContainerLength = imagePreviewContainer.length,
             validImgWidth, validImgHeight, imgWidth;
 
-        if(typeof file === "object"){
-            imgWidth = file.width;
-            validImgWidth = Validate.imgWidth(imgWidth, validImgWidths, file.name);
-            if(validImgWidth.valid !== true){
-                dzValidation = validImgWidth;
-                return dzValidation;
+        if(typeof files === "object"){
+            //At this point we have all the 'files' in the files object
+            //Iterate through each to validate its width
+            for(var i=0; i<files.length; i++){
+                imgWidth = files[i].width;
+                validImgWidth = Validate.imgWidth(imgWidth, validImgWidths);
+                if(validImgWidth.valid !== true){
+                    dzValidation = validImgWidth;
+                    return dzValidation;
+                }
             }
+
+            //If we've gotten this far then check to see if there are any duplicate widths
             imagePreviewContainer.each(function () {
                 var imagePreview = $(this).find('img'),
                     imageWidth = imagePreview[0].clientWidth;
@@ -200,8 +208,8 @@ var Validate = {
             dzValidation.error += "<p>Please add <b>" + (minNumImgs - imagePreviewContainerLength) + "</b> valid banner images to this drop zone.</p>";
         }
         else{
-            Validate.imgHeight(dropZone);
-            validImgHeight = Validate.imgHeight(dropZone);
+            // Validate.imgHeight(dropZone, file);
+            validImgHeight = Validate.imgHeight(dropZone, files);
             if(validImgHeight.valid === false){
                 dzValidation.valid = false;
                 dzValidation.error += validImgHeight.error;
@@ -223,27 +231,30 @@ var Validate = {
         }
         return {valid:true};
     },
-    imgHeight: function(dropZone) {
+    imgHeight: function(dropZone, files) {
+        'use strict';
         var bannerImages =  dropZone.find('img'),
             imgObj = {},
             bannerHeight = 0,
             imageHeightsValid = true;
 
-            bannerImages.each(function (index, currentImage) {
+            $.each(files, function (index, currentImage) {
                 imgObj['image'+index] = {};
-                imgObj['image'+index]['name'] = currentImage.alt;
-                imgObj['image'+index]['height'] = currentImage.height;
-
-                if(index > 0 && (imgObj['image'+index]['height'] !== imgObj['image'+(index-1)]['height']) && (imageHeightsValid === true)){
+                imgObj['image'+index].name = currentImage.alt;
+                imgObj['image'+index].height = currentImage.height;
+                bannerHeight=currentImage.height;
+                if(index > 0 && (imgObj['image'+index].height !== imgObj['image'+(index-1)].height) && (imageHeightsValid === true)){
                     imageHeightsValid = false;
                 }
-                $('#banner-height').val(currentImage.height);
             });
         bannerImages.each(function (index, currentImage) {
             imgObj['image'+index] = {};
-            imgObj['image'+index]['name'] = currentImage.alt;
-            imgObj['image'+index]['height'] = currentImage.height;
+            imgObj['image'+index].name = currentImage.alt;
+            imgObj['image'+index].height = currentImage.height;
         });
-        return {valid: imageHeightsValid, error: "<p>The following images do not contain equal height</p>: " + JSON.stringify(imgObj), bannerHeight: bannerHeight}
+        if(imageHeightsValid){
+            $('#banner-height').val(bannerHeight);
+        }
+        return {valid: imageHeightsValid, error: "<p>The following images do not contain equal height</p>: " + JSON.stringify(imgObj), bannerHeight: bannerHeight};
     }
 };

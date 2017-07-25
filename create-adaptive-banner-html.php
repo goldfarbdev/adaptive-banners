@@ -48,7 +48,7 @@ switch ($bannerType) {
                 }
                 
                 .cwwbos_cre_content_$epochTimeStamp #cwwbos_full_offer {
-                    background: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_1008x$bannerHeight.jpg') center center no-repeat;
+                    background: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_single_1008x$bannerHeight.jpg') center center no-repeat;
                 }
                 
                 
@@ -57,7 +57,7 @@ switch ($bannerType) {
                         width: 1260px;
                     }
                     .cwwbos_cre_content_$epochTimeStamp #cwwbos_full_offer {
-                        background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_1260x$bannerHeight.jpg');
+                        background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_single_1260x$bannerHeight.jpg');
                     }
                 }
                 @media only screen and (min-width: 1512px) {
@@ -65,7 +65,7 @@ switch ($bannerType) {
                         width: 1512px;
                     }
                     .cwwbos_cre_content_$epochTimeStamp #cwwbos_full_offer {
-                        background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_1512x$bannerHeight.jpg');
+                        background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_single_1512x$bannerHeight.jpg');
                     }
                 }
                 @media only screen and (min-width: 1764px) {
@@ -73,7 +73,7 @@ switch ($bannerType) {
                         width: 1764px;
                     }
                     .cwwbos_cre_content_$epochTimeStamp #cwwbos_full_offer {
-                        background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_1764x$bannerHeight.jpg');
+                        background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_single_1764x$bannerHeight.jpg');
                     }
                 }
                 </style>
@@ -135,11 +135,11 @@ HTML;
               }
             
               .cwwbos_double_banner_$epochTimeStamp #cwwbos_left_offer {
-                background: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_1008.jpg') center center no-repeat;
+                background: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_left_1008.jpg') center center no-repeat;
               }
             
               .cwwbos_double_banner_$epochTimeStamp #cwwbos_right_offer {
-                background: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_1008.jpg') center center no-repeat;
+                background: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_right_1008.jpg') center center no-repeat;
               }
             
             
@@ -156,11 +156,11 @@ HTML;
             
                 /* Offer backgrounds */
                 .cwwbos_double_banner_$epochTimeStamp #cwwbos_left_offer {
-                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_1260.jpg');
+                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_left_1260.jpg');
                 }
             
                 .cwwbos_double_banner_$epochTimeStamp #cwwbos_right_offer {
-                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_1260.jpg');
+                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_right_1260.jpg');
                 }
               }
               @media only screen and (min-width: 1512px) {
@@ -176,11 +176,11 @@ HTML;
             
                 /* Offer backgrounds */
                 .cwwbos_double_banner_$epochTimeStamp #cwwbos_left_offer {
-                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_1512.jpg');
+                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_left_1512.jpg');
                 }
             
                 .cwwbos_double_banner_$epochTimeStamp #cwwbos_right_offer {
-                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_1512.jpg');
+                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_right_1512.jpg');
                 }
               }
               @media only screen and (min-width: 1764px) {
@@ -196,11 +196,11 @@ HTML;
             
                 /* Offer backgrounds */
                 .cwwbos_double_banner_$epochTimeStamp #cwwbos_left_offer {
-                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_1764.jpg');
+                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_left_1764.jpg');
                 }
             
                 .cwwbos_double_banner_$epochTimeStamp #cwwbos_right_offer {
-                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_1764.jpg');
+                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_right_1764.jpg');
                 }
               }
             </style>
@@ -277,15 +277,15 @@ HTML;
               
               /* Change names of these IDs in CSS and on URLs below to describe each offer */
               .cwwbos_tri_banner_$epochTimeStamp #cwwbos_tri_offer_left {
-                  background: url(/sbd/cre/products/160103/XXXXX/images/XXXXX_420x90.jpg) top center no-repeat;
+                  background: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_left_420x90.jpg') top center no-repeat;
               }
               
               .cwwbos_tri_banner_$epochTimeStamp #cwwbos_tri_offer_mid {
-                  background: url(/sbd/cre/products/160103/XXXXX/images/XXXXX_420x90.jpg) top center no-repeat;
+                  background: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_middle_420x90.jpg') top center no-repeat;
               }
               
               .cwwbos_tri_banner_$epochTimeStamp #cwwbos_tri_offer_right {
-                  background: url(/sbd/cre/products/160103/XXXXX/images/XXXXX_420x90.jpg) top center no-repeat;
+                  background: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_right_420x90.jpg') top center no-repeat;
               }
             
             
@@ -308,15 +308,15 @@ HTML;
                 }
                 
                 .cwwbos_tri_banner_$epochTimeStamp #cwwbos_tri_offer_left {
-                  background-image: url(/sbd/cre/products/160103/XXXXX/images/XXXXX_630x90.jpg);
+                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_left_630x90.jpg');
                 }
               
                 .cwwbos_tri_banner_$epochTimeStamp #cwwbos_tri_offer_mid {
-                  background-image: url(/sbd/cre/products/160103/XXXXX/images/XXXXX_630x90.jpg);
+                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_middle_630x90.jpg');
                 }
               
                 .cwwbos_tri_banner_$epochTimeStamp #cwwbos_tri_offer_right {
-                  background-image: url(/sbd/cre/products/160103/XXXXX/images/XXXXX_630x90.jpg);
+                  background-image: url('/sbd/cre/products/$releaseDate/$jobNumber/images/{$jobNumber}_right_630x90.jpg');
                 }
               }
               @media only screen and (min-width: 1764px) {
@@ -356,8 +356,8 @@ HTML;
 
 $ds = DIRECTORY_SEPARATOR;
 $fileName = $_POST['job-number'] . '_banner.html';
-//$dir = getcwd() . '/' . $jobNumber.'/'.$fileName;
-$dir = $_SERVER['DOCUMENT_ROOT'] . '/agency-dev/adaptive-banners/' . $jobNumber . '/' . $fileName;
+$dir = getcwd() . '/' . $jobNumber.'/'.$fileName;
+//$dir = $_SERVER['DOCUMENT_ROOT'] . '/agency-dev/adaptive-banners/' . $jobNumber . '/' . $fileName;
 echo 'DIR is: ' . $dir;
 ADAPTIVEBANNER::createHTMLFile($dir, $adaptiveBannerHTML);
 

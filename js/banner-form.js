@@ -1,6 +1,7 @@
 /**
  * Created by Greg.Goldfarb on 7/1/17.
  */
+
 var BannerForm = {
     /*
      * @form is the form object
@@ -40,7 +41,7 @@ var BannerForm = {
                 formSubmitBtns = $('.form-submit'),
                 removeButton = $('#remove-files'),
                 validBannerImgWidths = validImgWidths[bannerType];
-
+            $('.banner-success').remove();
             if(bannerType === "null") {
                 $(dz,'#generic-form-fields').addClass('hidden');
                 formSubmitBtns.addClass('hidden');
@@ -155,7 +156,9 @@ var BannerForm = {
         }
     },
 
-    dropZone: {},
+    dropZone: {
+        files:[]
+    },
 
     thumbNailEvents: {},
 
@@ -200,30 +203,29 @@ var BannerForm = {
              *  I WAS TRYING TO FIZ THE PROBLEM WITH THE HEIGHT VALIDATION BY TRIGGERING
              *  SOMETHING ON THE FINAL THUMBNAIL ADD, BUT STILL NOT WORKING....
              */
-            BannerForm.dropZone[dropZoneVarName]['thumbnailEvents'] = 0;
+            BannerForm.dropZone[dropZoneVarName].thumbNailEvents = 0;
 
             BannerForm.dropZone[dropZoneVarName].on("sending", function (file, xhr, formData) {
-                var jobNumber = $('#job-number').val();
+                var jobNumber = $('#job-number').val(),
+                    bannerLocation = file.previewElement.parentElement.getAttribute('banner-location');
                 formData.append("job-number", jobNumber);
+                formData.append("banner-location", bannerLocation);
             });
 
             BannerForm.dropZone[dropZoneVarName].on("thumbnail", function (file, event) {
-                /*
-                    THIS TIMEOUT COULD PROBABLY GO.  WAS HAVING DIFFICULTY GETTING THE ACTUAL HEIGHT AND WIDTH
-                    AT THE CORRECT TIME IT SOMETIMES WORKS.
-                 */
-                BannerForm.dropZone[dropZoneVarName]['thumbnailEvents']++;
-                if(BannerForm.dropZone[dropZoneVarName]['thumbnailEvents']==validImgWidths.length){
-                    BannerForm.dropZone[dropZoneVarName]['thumbnailEvents']=0;
+                BannerForm.dropZone[dropZoneVarName].thumbNailEvents++;
+                BannerForm.dropZone.files.push(file);
+
+                //WAIT UNTIL THE LAST THUMBNAIL EVENT BEFORE VALIDATING
+                if (BannerForm.dropZone[dropZoneVarName].thumbNailEvents == validImgWidths.length) {
+                    Validate.form(bannerType, validImgWidths, BannerForm.formFields, BannerForm.textFields, BannerForm.dropZone.files, this);
+                    BannerForm.dropZone[dropZoneVarName].thumbNailEvents = 0;
+                    BannerForm.dropZone.files = [];
                 }
-                setTimeout(
-                    Validate.form(bannerType, validImgWidths, BannerForm.formFields, BannerForm.textFields, file, this),
-                3000);
             });
             BannerForm.dropZone[dropZoneVarName].on("complete", function (file) {
                 BannerForm.dropZone[dropZoneVarName].processQueue();
             });
-
 
 
             $('button#remove-files').click(function(e){
@@ -281,7 +283,8 @@ var BannerForm = {
                         var formData = $('form').serialize();
                         $.post('create-adaptive-banner-html.php', formData)
                             .done(function (data) {
-                                //alert(data);
+                                $('.banner-success').remove();
+                                submitButton.attr('disabled', 'disabled').after('<p class="banner-success alert-info alert">Adaptive banner successfully created.')
                             })
                             .fail(function () {
                                 alert("Banner HTML was not created.")

@@ -2,6 +2,7 @@
 include_once('ADAPTIVEBANNER.php');
 
 $jobNumber = $_POST['job-number'];
+$bannerLocation = $_POST['banner-location'];
 
 if (!empty($_FILES)) {
     $ds = DIRECTORY_SEPARATOR;
@@ -9,7 +10,7 @@ if (!empty($_FILES)) {
     $imageDimensions = getimagesize($tempFile);
     $imgWidth = $imageDimensions[0];
     $imgHeight = $imageDimensions[1];
-    $fileName = $jobNumber . '_' . $imgWidth . 'x'. $imgHeight . '.jpg';
+    $fileName = $jobNumber . '_' . $bannerLocation . '_' . $imgWidth . 'x'. $imgHeight . '.jpg';
     $targetPath = ADAPTIVEBANNER::createDirectory($jobNumber);
 
     $targetFile =  $targetPath . 'images' . $ds . $fileName;

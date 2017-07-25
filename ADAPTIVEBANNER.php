@@ -11,9 +11,9 @@ class ADAPTIVEBANNER
 
     public static function createDirectory($storeFolder)
     {
-//        $ds = DIRECTORY_SEPARATOR;
-//        $dir = dirname(__FILE__) . $ds . $storeFolder . $ds;  //4
-        $dir = $_SERVER['DOCUMENT_ROOT']  . '/agency-dev/adaptive-banners/' . $storeFolder . '/';
+        $ds = DIRECTORY_SEPARATOR;
+        $dir = dirname(__FILE__) . $ds . $storeFolder . $ds;  //4
+//        $dir = $_SERVER['DOCUMENT_ROOT']  . '/agency-dev/adaptive-banners/' . $storeFolder . '/';
         $imageDir = $dir .'images/';
 
         if (!file_exists($dir)) {
@@ -22,8 +22,8 @@ class ADAPTIVEBANNER
             }
             chmod($dir, 0777);
             if (!file_exists($imageDir)) {
-                if (!mkdir($imageDir, 0700, true)) {
-                    die('Failed to create folders '.$imageDir);
+                if (!mkdir($imageDir, 0777, true)) {
+                    die('Failed to create folder '.$imageDir);
                 }
                 chmod($imageDir, 0777);
             }
